@@ -1,0 +1,25 @@
+<div class="login-container" *ngIf="currentUser">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Bem vindo, {{currentUser.name}}</mat-card-title>
+      <mat-card-subtitle>{{currentUser.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="h-flex v-flex">
+        ID: {{currentUser.id}}
+      </p>
+      <p class="h-flex v-flex">
+        Email: {{currentUser.email}}
+      </p>
+      <p class="h-flex v-flex">
+        Username: {{currentUser.username}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <p class="h-flex">
+
+      </p>
+    </mat-card-actions>
+  </mat-card>
+</div>
