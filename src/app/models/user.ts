@@ -3,6 +3,7 @@ export class User {
   name: string;
   email: string;
   username: string;
+  basketId: number;
 
   constructor(id: number, name: string, email: string, username: string) {
     this.id = id;

@@ -11,6 +11,7 @@ import {MaterialModule} from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {Interceptor} from './_helpers/auth-interceptor.module';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
+import {BasketComponent} from './pages/basket/basket.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
     AppComponent,
     LoginComponent,
     UsersComponent,
-    DashboardComponent
+    DashboardComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,

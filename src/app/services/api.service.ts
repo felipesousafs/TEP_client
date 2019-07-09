@@ -22,4 +22,8 @@ export class ApiService {
   getUser(username: string) {
     return this.http.get<any>('http://localhost:3000/users/' + username, {observe: 'response', headers});
   }
+
+  getBasket() {
+    return this.http.get<any>('http://localhost:3000/baskets', {observe: 'response', headers});
+  }
 }

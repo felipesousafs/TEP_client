@@ -1,0 +1,15 @@
+.h-flex{
+  display: flex;
+  flex-direction: column;
+}
+.v-flex{
+  display: flex;
+  flex-direction: row;
+}
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
