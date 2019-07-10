@@ -7,7 +7,7 @@ export class Basket {
   constructor(basket: any) {
     this.id = basket.id;
     basket.items.forEach(item => {
-      this.items.push(new Item(item.id, item.name, item.cost, item.quantity));
+      this.items.push(new Item(item.name, item.cost, item.quantity, item.id, this.id));
     });
   }
 }

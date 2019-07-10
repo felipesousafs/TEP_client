@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './public/login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { UsersComponent } from './pages/users/users.component';
 import {MaterialModule} from './material.module';
@@ -29,7 +29,8 @@ import {BasketComponent} from './pages/basket/basket.component';
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-    Interceptor
+    Interceptor,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
