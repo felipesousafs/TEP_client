@@ -26,6 +26,7 @@ export class BasketComponent implements OnInit {
   quantityCtrl2 = new FormControl();
   filteredStates: Observable<Item[]>;
   items: Item[] = [];
+  basket: Basket;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -62,8 +63,8 @@ export class BasketComponent implements OnInit {
     this.api.getBasket().subscribe(res => {
       console.log('UsersComponent - getBasket: ', res);
       const self = this;
-      const basket = new Basket(res.body);
-      self.basketItems = basket.items;
+      this.basket = new Basket(res.body);
+      self.basketItems = this.basket.items;
       this.dataSource = new MatTableDataSource(this.basketItems);
       this.dataSource.sort = this.sort;
     });
@@ -108,13 +109,14 @@ export class BasketComponent implements OnInit {
     console.log('costCtrl2', this.costCtrl2);
     console.log('quantityCtrl2', this.quantityCtrl2);
     if (this.nameCtrl.value && this.costCtrl2.value && this.quantityCtrl2.value) {
-      this.api.addItemToBasket(1, new Item(this.nameCtrl.value, this.costCtrl2.value, this.quantityCtrl2.value)).subscribe(res => {
-        console.log('After Add Item: ', res);
-        if (res.status === 201) {
-          this.getBasket();
-          this.clearForm();
-        }
-      });
+      this.api.addItemToBasket(this.basket.id, new Item(this.nameCtrl.value, this.costCtrl2.value, this.quantityCtrl2.value))
+        .subscribe(res => {
+          console.log('After Add Item: ', res);
+          if (res.status === 201) {
+            this.getBasket();
+            this.clearForm();
+          }
+        });
     }
   }
 
@@ -125,6 +127,20 @@ export class BasketComponent implements OnInit {
         this.getBasket();
       }
     });
+  }
+
+  onMassiveDelete() {
+    console.log(this.selection);
+    if (this.anyItemSelected() === true) {
+      this.selection.selected.forEach(item => {
+        this.onDeleteItem(item);
+        this.selection.clear();
+      });
+    }
+  }
+
+  anyItemSelected() {
+    return this.selection.selected.length > 0;
   }
 
 }

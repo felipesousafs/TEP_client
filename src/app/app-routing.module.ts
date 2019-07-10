@@ -4,19 +4,28 @@ import {UsersComponent} from './pages/users/users.component';
 import {LoginComponent} from './public/login/login.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {BasketComponent} from './pages/basket/basket.component';
+import {AuthGuard} from './_helpers/auth.guard';
+
 
 const routes: Routes = [
   {
-    path: 'users', component: UsersComponent
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path: 'basket', component: BasketComponent
+    path: 'basket',
+    component: BasketComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'dashboard', component: DashboardComponent
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
