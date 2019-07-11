@@ -1,29 +1,51 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as moment from 'moment';
-import {User} from '../models/user';
 import {catchError, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
+import {User} from '../models/user';
+import {Observable, ObservableInput, throwError} from 'rxjs';
+
+const headers = new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Access-Control-Allow-Origin': '*'
+});
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {
   }
 
   login(email: string, password: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    });
+
     return this.http.post('http://localhost:3000/auth/login', {email, password}, {observe: 'response', headers})
       .subscribe(res => {
         console.log('Response from login: ', res);
         this.setSession(res.body);
         this.router.navigateByUrl('/');
+      });
+  }
+
+  register(data: any): any {
+    const userData = {
+      username: data.name,
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      password_confirmation: data.passwordConfirmation
+    };
+
+    return this.http.post<any>('http://localhost:3000/users', userData, {observe: 'response', headers})
+      .subscribe(res => {
+        if (res.status === 201) {
+          this.openSnackBar('Cadastrado com sucesso.', 'OK');
+          this.login(data.email, data.password);
+        }
       });
   }
 
@@ -52,5 +74,11 @@ export class AuthService {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);
+  }
+
+  public openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 }

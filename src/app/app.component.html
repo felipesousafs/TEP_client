@@ -3,17 +3,22 @@
   <mat-toolbar-row>
     <span routerLink="/" style="cursor: pointer">The Baskets</span>
     <span class="example-spacer"></span>
-    <button mat-button routerLink="users">Usuários</button>
-    <button mat-button routerLink="basket">
+    <button *ngIf="auth.isLoggedIn()" mat-button routerLink="users">Usuários</button>
+    <button *ngIf="auth.isLoggedIn()" mat-button routerLink="basket">
       Minha cesta
       <mat-icon aria-hidden="false" aria-label="Logout">shopping_basket</mat-icon>
     </button>
     <button *ngIf="auth.isLoggedIn()" mat-flat-button color="warn" matTooltip="Sair" (click)="doLogout()">
       <mat-icon aria-hidden="false" aria-label="Logout">logout</mat-icon>
     </button>
+    <button *ngIf="auth.isLoggedOut()" mat-flat-button color="basic" matTooltip="Cadastrar" routerLink="register">
+      Cadastro
+      <mat-icon aria-hidden="false" aria-label="Register">add</mat-icon>
+    </button>
+    <span> &nbsp; &nbsp; </span>
     <button *ngIf="auth.isLoggedOut()" mat-flat-button color="basic" matTooltip="Entrar" routerLink="login">
-      Logar-se
-      <mat-icon aria-hidden="false" aria-label="Logout">fingerprint</mat-icon>
+      Login
+      <mat-icon aria-hidden="false" aria-label="Login">fingerprint</mat-icon>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>

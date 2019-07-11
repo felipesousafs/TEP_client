@@ -10,6 +10,9 @@ export class AuthInterceptorModule implements HttpInterceptor {
 
     const idToken = localStorage.getItem('id_token');
     console.log(idToken);
+    if (req.url === 'http://localhost:3000/users' && req.method === 'POST'){
+      return next.handle(req);
+    }
     if (idToken) {
       const cloned = req.clone({
         headers: req.headers.set('Authorization',

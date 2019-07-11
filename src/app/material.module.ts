@@ -17,7 +17,7 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatTooltipModule,
-  MatProgressSpinnerModule, MatCheckboxModule, MatAutocompleteModule
+  MatProgressSpinnerModule, MatCheckboxModule, MatAutocompleteModule, MatSnackBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -41,7 +41,8 @@ import {
     MatTooltipModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule {

@@ -1,9 +1,9 @@
 <form class="example-form col-12" [formGroup]="form">
-  <mat-form-field class="p-left-15 col-6">
+  <mat-form-field class="p-left-15 col-5">
     <input name="name" matInput placeholder="Nome do produto" aria-label="Name" [matAutocomplete]="auto"
            [formControl]="nameCtrl">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let item of filteredStates | async" [value]="item.name">
+      <mat-option *ngFor="let item of filteredStates | async" [value]="item.name" (onSelectionChange)="onOptionListItemSelect(item)">
         <span>{{item.name}}</span> |
         <small>R$ {{item.cost}}</small>
       </mat-option>

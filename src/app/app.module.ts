@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {Interceptor} from './_helpers/auth-interceptor.module';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {BasketComponent} from './pages/basket/basket.component';
+import {RegisterComponent} from './public/register/register.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {BasketComponent} from './pages/basket/basket.component';
     LoginComponent,
     UsersComponent,
     DashboardComponent,
-    BasketComponent
+    BasketComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

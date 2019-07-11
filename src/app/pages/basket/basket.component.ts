@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {Basket} from '../../models/basket';
 import {ApiService} from '../../services/api.service';
 import {User} from '../../models/user';
@@ -33,7 +33,7 @@ export class BasketComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private api: ApiService, private fb: FormBuilder) {
+  constructor(private api: ApiService, private fb: FormBuilder, private snackBar: MatSnackBar) {
     this.getBasket();
     this.dataSource = new MatTableDataSource(this.basketItems);
     this.dataSource.sort = this.sort;
@@ -114,9 +114,12 @@ export class BasketComponent implements OnInit {
           console.log('After Add Item: ', res);
           if (res.status === 201) {
             this.getBasket();
+            this.openSnackBar(this.nameCtrl.value + ' adicionado', 'OK');
             this.clearForm();
           }
         });
+    } else {
+      this.openSnackBar('Você deve preencher todos os campos.', 'OK', 3000);
     }
   }
 
@@ -135,6 +138,7 @@ export class BasketComponent implements OnInit {
       this.selection.selected.forEach(item => {
         this.onDeleteItem(item);
         this.selection.clear();
+        this.openSnackBar('Os itens selecionados foram removidos.', 'OK', 3000);
       });
     }
   }
@@ -143,4 +147,14 @@ export class BasketComponent implements OnInit {
     return this.selection.selected.length > 0;
   }
 
+  onOptionListItemSelect(item: Item) {
+    this.costCtrl2.setValue(item.cost);
+  }
+
+  // tslint:disable-next-line:variable-name
+  openSnackBar(message: string, action: string, duration_in_ms?: number) {
+    this.snackBar.open(message, action, {
+      duration: duration_in_ms || 3000,
+    });
+  }
 }

@@ -5,6 +5,7 @@ import {LoginComponent} from './public/login/login.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {BasketComponent} from './pages/basket/basket.component';
 import {AuthGuard} from './_helpers/auth.guard';
+import {RegisterComponent} from './public/register/register.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'basket',
