@@ -1,0 +1,52 @@
+<div class="login-container">
+  <mat-card class="example-card">
+    <form [formGroup]="form">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Cadastro</mat-card-title>
+        <mat-card-subtitle>Informe seus dados abaixo</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="h-flex">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input name="name" matInput placeholder="Digite seu nome aqui" formControlName="name">
+<!--            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>-->
+          </mat-form-field>
+        </p>
+        <p class="h-flex">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input name="email" type="email" matInput placeholder="Digite seu email aqui" formControlName="email">
+<!--            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>-->
+            <mat-hint>Ex: myemail@domain.com</mat-hint>
+          </mat-form-field>
+        </p>
+        <p class="h-flex">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome de usuário</mat-label>
+            <input name="username" matInput placeholder="Digite seu nome de usuário aqui" formControlName="username">
+            <mat-hint>Apenas letras e números</mat-hint>
+          </mat-form-field>
+        </p>
+        <p class="h-flex">
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input name="password" type="password" matInput placeholder="Digite sua senha aqui" formControlName="password">
+          </mat-form-field>
+        </p>
+        <p class="h-flex">
+          <mat-form-field appearance="outline">
+            <mat-label>Confirmação de senha</mat-label>
+            <input name="passwordConfirmation" type="password" matInput placeholder="Repita sua senha aqui" formControlName="passwordConfirmation">
+          </mat-form-field>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <p class="h-flex">
+          <button mat-flat-button (click)="doRegister()" color="primary">Confirmar</button>
+        </p>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
